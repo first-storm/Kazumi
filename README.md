@@ -68,6 +68,10 @@
   alt="Get it on F-Droid" width="200">
 </a>
 
+### iOS (AltStore)
+添加此 AltStore 源 URL：
+`https://github.com/Predidit/Kazumi/releases/latest/download/altstore.json`
+
 ### GNU/Linux
 
 &nbsp;&nbsp;
@@ -188,7 +192,6 @@ A: 本项目编译需要良好的网络环境, 除了由 Google 托管的 Flutte
 感谢 [avbuild](https://github.com/wang-bin/avbuild) 本项目使用了来自 avbuild 的树外补丁实现非标准视频流播放。
 
 感谢 [hive](https://github.com/isar/hive) 本项目持久化储存能力来自 hive。
-
 
 
 

@@ -422,6 +422,32 @@
           - name: Copy linux build file to root
             run: cp linux_outputs/* .
 
+          - name: Generate AltStore source
+            run: |
+              version_date=$(date -u +"%Y-%m-%dT%H:%M:%SZ")
+              cat > altstore.json <<EOF
+              {
+                "name": "Kazumi",
+                "identifier": "com.predidit.kazumi.altstore",
+                "sourceURL": "https://github.com/Predidit/Kazumi/releases/latest/download/altstore.json",
+                "apps": [
+                  {
+                    "name": "Kazumi",
+                    "bundleIdentifier": "com.example.kazumi",
+                    "developerName": "Predidit",
+                    "subtitle": "Watch animes online with danmaku",
+                    "description": "Kazumi is a Flutter-based anime streaming app with danmaku support.",
+                    "version": "${{ env.tag }}",
+                    "versionDate": "${version_date}",
+                    "downloadURL": "https://github.com/Predidit/Kazumi/releases/download/${{ env.tag }}/Kazumi_ios_${{ env.tag }}_no_sign.ipa",
+                    "iconURL": "https://raw.githubusercontent.com/Predidit/Kazumi/main/assets/images/logo/logo_ios.png",
+                    "tintColor": "#3E7CB1"
+                  }
+                ],
+                "news": []
+              }
+              EOF
+
           - name: Sign APK
             id: sign_app
             uses: filippoLeporati93/android-release-signer@v1
@@ -441,6 +467,7 @@
             with:
               files: |
                 build/signed/*.apk
+                altstore.json
                 Kazumi_windows_*.zip
                 Kazumi_windows_*.msix
                 Kazumi_macos_*.dmg
